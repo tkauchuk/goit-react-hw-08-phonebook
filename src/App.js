@@ -1,25 +1,33 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import Section from "./components/Section";
-import ContactForm from "./components/ContactForm";
-import Filter from './components/Filter';
-import ContactList from "./components/ContactList";
+import Navigation from './components/Navigation';
+import Homepage from './views/Homepage';
+import Signup from './views/Signup';
+import Login from './views/Login';
+import Phonebook from './views/Phonebook';
 
 
 function App() {
-
     return (
-        <Fragment>
-            <Section>
-                <h1 className="">Phonebook</h1>
-                <ContactForm />
-            </Section>
-            <Section>
-                <h2 className="">Contacts</h2>
-                <Filter />
-                <ContactList />
-            </Section>
-        </Fragment>
+      <Fragment>
+        <Navigation />
+
+        <Switch>
+          <Route path='/' exact>
+            <Homepage />
+          </Route>
+          <Route path='/register'>
+            <Signup />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/contacts'>
+            <Phonebook />
+          </Route>
+        </Switch>
+      </Fragment>
     );
 }
 

@@ -1,9 +1,10 @@
 import styles from './Section.module.css';
 
-function Container({ children }) {
+function Section({ children, extraStyles }) {
+    const classes = [styles.section, extraStyles].join(' ');
     return (
-        <div className={styles.section}>{children}</div>
+        <div className={classes}>{children}</div>
     );
 }
 
-export default Container;
+export default Section;
