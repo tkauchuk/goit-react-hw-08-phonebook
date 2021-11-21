@@ -1,8 +1,16 @@
 import { NavLink } from 'react-router-dom';
-import Section from '../Section';
+import { useSelector } from 'react-redux';
+import authSelectors from '../../redux/authentification/auth-selectors';
 import styles from './Navigation.module.css';
 
+import Section from '../Section';
+import AuthMenu from '../AuthMenu';
+import UserMenu from '../UserMenu';
+
+
 function Navigation() {
+  const isLoggedIn = useSelector(authSelectors.getIsUserLoggedIn);
+
   return (
     <Section extraStyles={styles.navSection}>
       <nav>
@@ -28,27 +36,9 @@ function Navigation() {
           </li>
         </ul>
       </nav>
-
-      <ul className={styles.authList}>
-        <li className={styles.authItem}>
-          <NavLink
-            to='/register'
-            className={styles.link}
-            activeClassName={styles.active}
-          >
-            Sign up
-          </NavLink>
-        </li>
-        <li className={styles.authItem}>
-          <NavLink
-            to='/login'
-            className={styles.link}
-            activeClassName={styles.active}
-          >
-            Log in
-          </NavLink>
-        </li>
-      </ul>
+      {
+        isLoggedIn ? <UserMenu /> : <AuthMenu />
+      }
     </Section>
   );
 }

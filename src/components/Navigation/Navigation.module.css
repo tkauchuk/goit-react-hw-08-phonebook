@@ -12,14 +12,7 @@
 .navItem:not(:last-child) {
     margin-right: 40px;
 }
-.authList {
-    margin-left: auto;
-    display: flex;
-    list-style: none;
-}
-.authItem:not(:last-child) {
-    margin-right: 40px;
-}
+
 .link {
     color: #989898;
     text-decoration: none;

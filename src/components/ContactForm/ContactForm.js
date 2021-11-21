@@ -2,14 +2,16 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './ContactForm.module.css';
-import actions from '../../redux/action-creators'
+import contactsOperations from '../../redux/contacts/contacts-operations';
+import contactsSelectors from '../../redux/contacts/contacts-selectors';
+// import actions from '../../redux/action-creators'
 
 
 function ContactForm() {
 
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
-    const existingContacts = useSelector(state => state.contacts.items);
+    const existingContacts = useSelector(contactsSelectors.getAllContacts);
     const dispatch = useDispatch();
 
     const onInputChange = event => {
@@ -34,7 +36,7 @@ function ContactForm() {
         setNumber('');
     }
 
-    const onFormSubmit = contact => dispatch(actions.addUsersContact(contact));
+    const onFormSubmit = contact => dispatch(contactsOperations.addContact(contact));
 
     const HandleFormSubmit = event => {
         event.preventDefault();

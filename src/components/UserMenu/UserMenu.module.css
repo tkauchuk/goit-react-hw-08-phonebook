@@ -1,0 +1,22 @@
+.menu {
+    margin-left: auto;
+    display: flex;
+    align-items: baseline;
+}
+.username {
+    margin-right: 40px;
+}
+.button {
+    display: block;
+    align-self: start;
+    background: transparent;
+    border: 1px solid #989898;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: background 250ms linear;
+}
+.button:active {
+    color: #ffffff;
+    background: #055c9d;
+}

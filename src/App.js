@@ -1,6 +1,11 @@
-import { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Fragment, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Switch } from 'react-router-dom';
+import authOperations from './redux/authentification/auth-operations';
 
+
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import Navigation from './components/Navigation';
 import Homepage from './views/Homepage';
 import Signup from './views/Signup';
@@ -8,24 +13,32 @@ import Login from './views/Login';
 import Phonebook from './views/Phonebook';
 
 
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.refresh());
+  }, [dispatch])
+
     return (
       <Fragment>
         <Navigation />
 
         <Switch>
-          <Route path='/' exact>
+          <PublicRoute path='/' exact>
             <Homepage />
-          </Route>
-          <Route path='/register'>
+          </PublicRoute>
+          <PublicRoute path='/register' restricted>
             <Signup />
-          </Route>
-          <Route path='/login'>
+          </PublicRoute>
+          <PublicRoute path='/login' restricted>
             <Login />
-          </Route>
-          <Route path='/contacts'>
+          </PublicRoute>
+
+          <PrivateRoute path='/contacts'>
             <Phonebook />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Fragment>
     );

@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../redux/authentification/auth-operations';
 
 import Section from '../components/Section';
 
 
 function Signup() {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,15 +27,18 @@ function Signup() {
         return;
     }
   }
+
   const onReset = () => {
     setName('');
     setEmail('');
     setPassword('');
   }
+
   const onSubmit = event => {
     event.preventDefault();
 
     const user = {name, email, password};
+    dispatch(authOperations.signup(user));
     onReset();
   }
 

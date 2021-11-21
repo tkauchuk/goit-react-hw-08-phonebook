@@ -2,7 +2,9 @@ import { Fragment } from 'react';
 
 function Homepage() {
   return(
-    <Fragment></Fragment>
+    <Fragment>
+      <h1 className="homepage-title">Домашняя страница нашего сервиса.</h1>
+    </Fragment>
   );
 }
 

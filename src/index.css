@@ -59,3 +59,8 @@ ul {
   color: #ffffff;
   background: #055c9d;
 }
+.homepage-title {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 100px;
+}
